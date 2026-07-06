@@ -32,11 +32,10 @@ export const relatoCards: RelatoCard[] = [
     imageAlt: "Vista do Ravena Cassino Hotel",
   },
   {
-    id: "manoel-silveira",
-    title: "As noites pareciam não ter fim.",
-    excerpt:
-      "Manoel Silveira, antigo crupiê do cassino, relembra a atmosfera eletrizante de 1945.",
+    id: "registro-historico",
+    title: "",
+    excerpt: "",
     imageSrc: "/acervo/acervo-05.jpeg",
-    imageAlt: "Entrevista, relato histórico",
+    imageAlt: "Registro histórico do Ravena Cassino Hotel",
   },
 ];

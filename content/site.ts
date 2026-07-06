@@ -14,6 +14,7 @@ export const siteCopy = {
       "Este site reúne fotografias, relatos e referências históricas sobre o emblemático hotel de Laguna - Santa Catarina. O objetivo é preservar o legado arquitetônico, cultural e social de um lugar que marcou gerações no sul do Brasil.",
       "O acervo está em constante expansão. Se você possui materiais, histórias ou documentos relacionados ao Ravena, sua contribuição será fundamental para enriquecer esta memória coletiva.",
     ],
+    origem: "Este projeto nasceu da iniciativa de Tony Torquato, estudante do curso de Arquitetura e Urbanismo da Universidade do Estado de Santa Catarina (UDESC) e cidadão lagunense, movido pelo compromisso com a preservação da memória, da identidade e do patrimônio cultural de sua cidade. Desenvolvido no âmbito da disciplina de Patrimônio, ministrada pela professora doutora Lilian Fabre, o trabalho busca contribuir para a valorização e a defesa do Acervo Ravena Cassino Hotel, reconhecendo sua relevância histórica, arquitetônica e afetiva para a memória coletiva de Laguna.",
   },
   legado: {
     title: "Três dimensões do legado",

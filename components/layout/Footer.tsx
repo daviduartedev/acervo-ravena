@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { MapPin, Phone, Github, Linkedin } from "lucide-react";
 import { footerNavLinks } from "@/content/navigation";
 
 export function Footer() {
@@ -11,9 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex text-3xl font-semibold leading-tight">
-              Ravena Cassino
-              <br />
-              Acervo Documental
+              Acervo Ravena<br />Cassino Hotel
             </Link>
             <p className="mt-6 max-w-md font-light leading-relaxed text-[#f7f1e6]/70">
               Um projeto dedicado à preservação histórica, arquitetônica e cultural
@@ -45,18 +43,42 @@ export function Footer() {
               Laguna - Santa Catarina
             </span>
             <a
-              href="mailto:contato@acervoravena.com.br"
+              href="https://wa.me/5548984660149"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-light text-[#f7f1e6]/70 transition-colors hover:text-[#f7f1e6]"
             >
-              <Mail size={16} strokeWidth={1.6} aria-hidden />
-              contato@acervoravena.com.br
+              <Phone size={16} strokeWidth={1.6} aria-hidden />
+              (48) 9 8466-0149
             </a>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col justify-between gap-4 border-t border-[#f7f1e6]/10 pt-8 text-sm font-light text-[#f7f1e6]/50 md:flex-row">
-          <span>&copy; {year} Acervo Ravena. Todos os direitos reservados.</span>
-          <span>Memória, arquitetura e cidade em acervo vivo.</span>
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-[#f7f1e6]/10 pt-8 md:flex-row md:items-center">
+          <span className="text-sm font-light text-[#f7f1e6]/50">
+            &copy; {year} Acervo Ravena Cassino Hotel. Todos os direitos reservados.
+          </span>
+          <span className="flex items-center gap-2 text-xs font-light text-[#f7f1e6]/35">
+            Desenvolvido por
+            <a
+              href="https://www.linkedin.com/in/davi-duarte-8675ba27b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn de Davi Duarte"
+              className="transition-opacity hover:opacity-70"
+            >
+              <Linkedin size={14} strokeWidth={1.5} />
+            </a>
+            <a
+              href="https://github.com/daviduartedev"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub de Davi Duarte"
+              className="transition-opacity hover:opacity-70"
+            >
+              <Github size={14} strokeWidth={1.5} />
+            </a>
+          </span>
         </div>
       </div>
     </footer>

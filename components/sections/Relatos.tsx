@@ -42,14 +42,18 @@ export function Relatos() {
                 />
                 <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 hover:bg-black/0" />
               </div>
-              <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
-                {card.id === "juliano" ? (
-                  card.title
-                ) : (
-                  <>&ldquo;{card.title}&rdquo;</>
-                )}
-              </h3>
-              <p className="font-light text-white/50">{card.excerpt}</p>
+              {card.title && (
+                <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
+                  {card.id === "juliano" ? (
+                    card.title
+                  ) : (
+                    <>&ldquo;{card.title}&rdquo;</>
+                  )}
+                </h3>
+              )}
+              {card.excerpt && (
+                <p className="font-light text-white/50">{card.excerpt}</p>
+              )}
             </motion.article>
           ))}
         </div>
