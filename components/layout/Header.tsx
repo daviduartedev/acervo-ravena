@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Archive, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { primaryNavLinks } from "@/content/navigation";
 
 function isActive(pathname: string, href: string) {
@@ -12,46 +12,31 @@ function isActive(pathname: string, href: string) {
 
 export function Header() {
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <header className="fixed left-0 top-0 z-50 w-full px-3 py-3 md:px-5">
-        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-[6px] border border-foreground/10 bg-background/90 px-4 py-3 shadow-[0_18px_60px_rgba(42,31,18,0.12)] backdrop-blur-xl md:px-5">
+      <header className="fixed left-0 top-0 z-50 w-full px-4 py-3 md:px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between border border-white/10 bg-black/80 px-5 py-3 backdrop-blur-xl">
           <Link
             href="/"
-            className="flex min-w-0 items-center gap-3 text-foreground"
-            aria-label="Ir para a página inicial do Acervo Ravena"
-            onClick={() => setIsMenuOpen(false)}
+            className="text-sm font-bold uppercase tracking-[0.18em] text-white"
+            onClick={() => setOpen(false)}
           >
-            <span className="grid size-10 shrink-0 place-items-center rounded-[6px] border border-foreground/10 bg-foreground text-background">
-              <Archive size={18} strokeWidth={1.6} aria-hidden />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-sm font-semibold leading-none">
-                Acervo Ravena
-              </span>
-              <span className="mt-1 block truncate text-xs font-light text-muted-foreground">
-                Cassino Hotel, Laguna
-              </span>
-            </span>
+            Acervo Ravena
           </Link>
 
-          <nav
-            className="hidden items-center gap-1 xl:flex"
-            aria-label="Navegação principal"
-          >
+          <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
             {primaryNavLinks.map((link) => {
               const active = isActive(pathname, link.href);
-
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-[6px] px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors ${
                     active
-                      ? "bg-foreground text-background"
-                      : "text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
+                      ? "text-white"
+                      : "text-white/40 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -60,52 +45,63 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Link
-              href="/projeto#contribua"
-              className="hidden rounded-[6px] border border-foreground/10 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background md:inline-flex"
+          <div className="flex items-center gap-3">
+            <a
+              href="https://wa.me/5548984660149"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-black md:inline-flex"
             >
               Contribuir
-            </Link>
+            </a>
             <button
               type="button"
-              className="grid size-10 place-items-center rounded-[6px] border border-foreground/10 text-foreground transition-colors hover:bg-foreground hover:text-background xl:hidden"
-              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-              aria-expanded={isMenuOpen}
-              onClick={() => setIsMenuOpen((open) => !open)}
+              className="grid size-9 place-items-center border border-white/20 text-white transition-colors hover:bg-white hover:text-black xl:hidden"
+              aria-label={open ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={open}
+              onClick={() => setOpen((o) => !o)}
             >
-              {isMenuOpen ? (
-                <X size={20} strokeWidth={1.7} aria-hidden />
+              {open ? (
+                <X size={18} strokeWidth={1.8} aria-hidden />
               ) : (
-                <Menu size={20} strokeWidth={1.7} aria-hidden />
+                <Menu size={18} strokeWidth={1.8} aria-hidden />
               )}
             </button>
           </div>
         </div>
       </header>
 
-      {isMenuOpen && (
-        <div className="fixed inset-x-3 top-[86px] z-40 rounded-[6px] border border-foreground/10 bg-background/95 p-4 shadow-[0_24px_80px_rgba(42,31,18,0.18)] backdrop-blur-xl md:inset-x-5 xl:hidden">
-          <nav className="grid gap-1" aria-label="Navegação móvel">
-            {primaryNavLinks.map((link) => {
+      {open && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-black pt-[72px]">
+          <nav className="flex flex-col px-6 pt-8" aria-label="Menu móvel">
+            {primaryNavLinks.map((link, i) => {
               const active = isActive(pathname, link.href);
-
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-[6px] px-4 py-3 text-lg font-medium transition-colors ${
-                    active
-                      ? "bg-foreground text-background"
-                      : "text-foreground/75 hover:bg-foreground/5 hover:text-foreground"
+                  onClick={() => setOpen(false)}
+                  style={{ transitionDelay: `${i * 30}ms` }}
+                  className={`border-b border-white/8 py-5 text-3xl font-black tracking-tighter transition-colors ${
+                    active ? "text-white" : "text-white/40 hover:text-white"
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               );
             })}
           </nav>
+          <div className="mt-auto px-6 pb-12 pt-8">
+            <a
+              href="https://wa.me/5548984660149"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="flex w-full items-center justify-center bg-white py-4 text-sm font-bold uppercase tracking-[0.15em] text-black"
+            >
+              Contribuir com material
+            </a>
+          </div>
         </div>
       )}
     </>

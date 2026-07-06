@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
 
 @import 'tailwindcss';
@@ -11,9 +11,9 @@
 
 body {
   font-family: 'Manrope', sans-serif;
-  background:
-    linear-gradient(180deg, rgba(91, 35, 51, 0.07), transparent 34rem),
-    var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
 }
 
 .font-serif-timeline {
@@ -25,18 +25,22 @@ html {
   scroll-behavior: smooth;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  opacity: 0.42;
-  mix-blend-mode: multiply;
-  background:
-    radial-gradient(ellipse at center, transparent 0%, transparent 54%, rgba(35, 27, 20, 0.18) 100%),
-    repeating-linear-gradient(0deg, rgba(35, 27, 20, 0.025) 0 1px, transparent 1px 5px),
-    repeating-radial-gradient(circle at 18% 28%, rgba(91, 35, 51, 0.08) 0 1px, transparent 1px 5px);
+/* Smooth tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
