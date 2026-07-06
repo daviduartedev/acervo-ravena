@@ -23,7 +23,7 @@ export function Header() {
             className="text-sm font-bold uppercase tracking-[0.18em] text-white"
             onClick={() => setOpen(false)}
           >
-            Acervo Ravena Cassino Hotel
+            Acervo Ravena
           </Link>
 
           <nav className="hidden items-center gap-1 xl:flex" aria-label="Navegação principal">
