@@ -28,8 +28,7 @@ export const relatoCards: RelatoCard[] = [
     title: "Um marco para Laguna",
     excerpt: depoimentoJuliano.quote,
     author: `${depoimentoJuliano.author}, ${depoimentoJuliano.role}`,
-    imageSrc:
-      "https://images.unsplash.com/photo-1692153142713-690838f861e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    imageSrc: "/acervo/acervo-03.jpeg",
     imageAlt: "Vista do Ravena Cassino Hotel",
   },
   {
@@ -37,8 +36,7 @@ export const relatoCards: RelatoCard[] = [
     title: "As noites pareciam não ter fim.",
     excerpt:
       "Manoel Silveira, antigo crupiê do cassino, relembra a atmosfera eletrizante de 1945.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1730282669807-12b3f79e1c27?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+    imageSrc: "/acervo/acervo-05.jpeg",
     imageAlt: "Entrevista, relato histórico",
   },
 ];

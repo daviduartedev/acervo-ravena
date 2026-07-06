@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+.pnpm-store/
 
 # next.js
 .next/
@@ -12,6 +13,7 @@ dist
 # debug
 npm-debug.log*
 pnpm-debug.log*
+tmp/
 
 # env
 .env

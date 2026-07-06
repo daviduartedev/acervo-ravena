@@ -3,37 +3,52 @@ import { relatoCards } from "@/content/depoimentos";
 
 export function Relatos() {
   return (
-    <section id="relatos" className="px-6 py-24 md:px-16 md:py-40">
+    <section className="px-6 py-20 md:px-10 md:py-24 lg:px-16">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 flex items-end justify-between border-b border-foreground/10 pb-4">
-          <h2 className="text-sm font-medium uppercase tracking-widest">
-            Relatos & Entrevistas
-          </h2>
+        <div className="mb-12 grid gap-6 lg:grid-cols-[0.72fr_1fr] lg:items-end">
+          <div>
+            <p className="mb-4 text-sm font-semibold uppercase text-foreground/60">
+              Relatos e entrevistas
+            </p>
+            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+              Vozes que dão escala humana ao arquivo.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg font-light leading-relaxed text-muted-foreground lg:justify-self-end">
+            Os relatos aproximam o acervo da vida cotidiana: trabalho, hospedagem,
+            festas, turismo, praia e transformações percebidas por quem viveu o
+            Ravena de perto.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
-          {relatoCards.map((card, index) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {relatoCards.map((card) => (
             <article
               key={card.id}
-              className={index === 1 ? "md:mt-24" : undefined}
+              className="overflow-hidden rounded-[6px] border border-foreground/10 bg-background/70 shadow-[0_18px_60px_rgba(42,31,18,0.06)]"
             >
-              <div className="relative mb-6 aspect-[4/3] overflow-hidden bg-muted">
+              <div className="relative aspect-[16/10] overflow-hidden bg-muted">
                 <Image
                   src={card.imageSrc}
                   alt={card.imageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover grayscale transition-transform duration-700 hover:scale-105"
+                  className="object-cover"
                 />
               </div>
-              <h3 className="mb-3 text-2xl font-medium tracking-tight">
-                {card.id === "juliano" ? (
-                  card.title
-                ) : (
-                  <>&ldquo;{card.title}&rdquo;</>
+              <div className="p-6 md:p-7">
+                <h3 className="mb-3 text-2xl font-semibold leading-tight">
+                  {card.title}
+                </h3>
+                <p className="font-light leading-relaxed text-muted-foreground">
+                  {card.excerpt}
+                </p>
+                {card.author && (
+                  <p className="mt-5 text-sm font-semibold text-foreground/60">
+                    {card.author}
+                  </p>
                 )}
-              </h3>
-              <p className="font-light text-muted-foreground">{card.excerpt}</p>
+              </div>
             </article>
           ))}
         </div>

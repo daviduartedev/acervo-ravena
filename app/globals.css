@@ -11,8 +11,36 @@
 
 body {
   font-family: 'Manrope', sans-serif;
+  background:
+    linear-gradient(180deg, rgba(91, 35, 51, 0.07), transparent 34rem),
+    var(--background);
 }
 
 .font-serif-timeline {
   font-family: 'Playfair Display', Georgia, serif;
+}
+
+html {
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  background:
+    radial-gradient(ellipse at center, transparent 0%, transparent 54%, rgba(35, 27, 20, 0.18) 100%),
+    repeating-linear-gradient(0deg, rgba(35, 27, 20, 0.025) 0 1px, transparent 1px 5px),
+    repeating-radial-gradient(circle at 18% 28%, rgba(91, 35, 51, 0.08) 0 1px, transparent 1px 5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

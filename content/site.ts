@@ -23,7 +23,7 @@ export const siteCopy = {
         id: "cognitivo",
         title: "Valor cognitivo",
         description:
-          "Iniciativa público-privada pioneira na implantação litorânea. A construção do Ravena em 1950–1962 representa uma síntese de técnica, empreendedorismo e visão urbana para o litoral catarinense.",
+          "Iniciativa público-privada pioneira na implantação litorânea. A construção do Ravena em 1950-1962 representa uma síntese de técnica, empreendedorismo e visão urbana para o litoral catarinense.",
       },
       {
         id: "afetivo",

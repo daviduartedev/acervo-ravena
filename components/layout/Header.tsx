@@ -1,64 +1,110 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Archive, Menu, X } from "lucide-react";
+import { primaryNavLinks } from "@/content/navigation";
 
-const navLinks = [
-  { href: "#historia", label: "História" },
-  { href: "#timeline", label: "Cronologia" },
-  { href: "#acervo", label: "Acervo" },
-  { href: "#documentados", label: "Documentados" },
-  { href: "#relatos", label: "Relatos" },
-];
+function isActive(pathname: string, href: string) {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
 
 export function Header() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-stone-800 bg-stone-950 px-6 py-5 text-stone-100">
-        <div className="text-base font-semibold uppercase tracking-widest">
-          Ravena Cassino
-        </div>
-        <nav className="hidden gap-8 text-xs font-medium uppercase tracking-widest lg:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-stone-400 transition-colors hover:text-stone-100"
+      <header className="fixed left-0 top-0 z-50 w-full px-3 py-3 md:px-5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between rounded-[6px] border border-foreground/10 bg-background/90 px-4 py-3 shadow-[0_18px_60px_rgba(42,31,18,0.12)] backdrop-blur-xl md:px-5">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-3 text-foreground"
+            aria-label="Ir para a página inicial do Acervo Ravena"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="grid size-10 shrink-0 place-items-center rounded-[6px] border border-foreground/10 bg-foreground text-background">
+              <Archive size={18} strokeWidth={1.6} aria-hidden />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold leading-none">
+                Acervo Ravena
+              </span>
+              <span className="mt-1 block truncate text-xs font-light text-muted-foreground">
+                Cassino Hotel, Laguna
+              </span>
+            </span>
+          </Link>
+
+          <nav
+            className="hidden items-center gap-1 xl:flex"
+            aria-label="Navegação principal"
+          >
+            {primaryNavLinks.map((link) => {
+              const active = isActive(pathname, link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`rounded-[6px] px-3 py-2 text-sm font-medium transition-colors ${
+                    active
+                      ? "bg-foreground text-background"
+                      : "text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <Link
+              href="/projeto#contribua"
+              className="hidden rounded-[6px] border border-foreground/10 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background md:inline-flex"
             >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <button
-          type="button"
-          className="lg:hidden text-stone-400 hover:text-stone-100 transition-colors"
-          aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X size={22} strokeWidth={1.5} />
-          ) : (
-            <Menu size={22} strokeWidth={1.5} />
-          )}
-        </button>
+              Contribuir
+            </Link>
+            <button
+              type="button"
+              className="grid size-10 place-items-center rounded-[6px] border border-foreground/10 text-foreground transition-colors hover:bg-foreground hover:text-background xl:hidden"
+              aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              {isMenuOpen ? (
+                <X size={20} strokeWidth={1.7} aria-hidden />
+              ) : (
+                <Menu size={20} strokeWidth={1.7} aria-hidden />
+              )}
+            </button>
+          </div>
+        </div>
       </header>
 
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-stone-950 px-6 pt-28 text-stone-100">
-          <nav className="flex flex-col gap-6 text-3xl font-medium tracking-tight">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-stone-300 hover:text-white transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+        <div className="fixed inset-x-3 top-[86px] z-40 rounded-[6px] border border-foreground/10 bg-background/95 p-4 shadow-[0_24px_80px_rgba(42,31,18,0.18)] backdrop-blur-xl md:inset-x-5 xl:hidden">
+          <nav className="grid gap-1" aria-label="Navegação móvel">
+            {primaryNavLinks.map((link) => {
+              const active = isActive(pathname, link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`rounded-[6px] px-4 py-3 text-lg font-medium transition-colors ${
+                    active
+                      ? "bg-foreground text-background"
+                      : "text-foreground/75 hover:bg-foreground/5 hover:text-foreground"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
