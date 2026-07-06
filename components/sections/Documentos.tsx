@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import {
   publicacaoTipoLabels,
@@ -6,26 +10,33 @@ import {
 } from "@/content/publicacoes";
 import { siteCopy } from "@/content/site";
 
-function PublicacaoCard({ item }: { item: PublicacaoDocumentada }) {
+function PublicacaoCard({ item, index }: { item: PublicacaoDocumentada; index: number }) {
+  const ref = useRef<HTMLLIElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
   return (
-    <article className="flex h-full flex-col rounded-[6px] border border-foreground/10 bg-background/70 p-6 shadow-[0_18px_60px_rgba(42,31,18,0.06)] md:p-7">
+    <motion.li
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.08 }}
+      className="flex flex-col border border-white/10 bg-white/4 p-6 md:p-8"
+    >
       <div className="mb-5 flex flex-wrap items-center gap-3">
-        <span className="rounded-[6px] border border-foreground/10 px-2.5 py-1 text-xs font-semibold text-foreground/70">
+        <span className="border border-white/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-white/60">
           {publicacaoTipoLabels[item.tipo]}
         </span>
-        <span className="text-sm font-light text-muted-foreground">{item.data}</span>
+        <span className="text-xs font-light text-white/40">{item.data}</span>
       </div>
 
-      <h3 className="mb-2 text-xl font-semibold leading-snug">{item.titulo}</h3>
-      <p className="mb-1 text-sm font-semibold text-foreground/80">{item.fonte}</p>
-      <p className="mb-6 flex-1 font-light leading-relaxed text-muted-foreground">
-        {item.resumo}
-      </p>
+      <h3 className="mb-2 text-lg font-bold leading-snug tracking-tight text-white md:text-xl">
+        {item.titulo}
+      </h3>
+      <p className="mb-1 text-sm font-semibold text-white/70">{item.fonte}</p>
+      <p className="mb-6 flex-1 font-light leading-relaxed text-white/50">{item.resumo}</p>
 
       {item.nota && (
-        <p className="mb-6 text-sm font-light leading-relaxed text-muted-foreground/80">
-          {item.nota}
-        </p>
+        <p className="mb-6 text-xs font-light leading-relaxed text-white/35">{item.nota}</p>
       )}
 
       {item.url ? (
@@ -33,45 +44,62 @@ function PublicacaoCard({ item }: { item: PublicacaoDocumentada }) {
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-opacity hover:opacity-70"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white transition-opacity hover:opacity-60"
         >
           Acessar fonte
-          <ExternalLink size={14} strokeWidth={1.6} aria-hidden />
+          <ExternalLink size={13} strokeWidth={1.5} aria-hidden />
         </a>
       ) : (
-        <span className="text-sm font-light text-muted-foreground">
-          Sem link público disponível
-        </span>
+        <span className="text-sm font-light text-white/35">Sem link público disponível</span>
       )}
-    </article>
+    </motion.li>
   );
 }
 
 export function Documentos() {
   const { title, lead, note } = siteCopy.documentados;
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   return (
-    <section className="border-y border-foreground/10 bg-[#eef1eb] px-6 py-20 md:px-10 md:py-24 lg:px-16">
+    <section
+      ref={ref}
+      id="documentados"
+      className="bg-[#0d0d0b] px-6 py-24 text-white md:px-10 md:py-32 lg:px-16"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
-          <div>
-            <p className="mb-4 text-sm font-semibold uppercase text-foreground/60">
+        <div className="mb-16 flex flex-col gap-6 md:mb-20 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5 }}
+              className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-white/40"
+            >
               {title}
-            </p>
-            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
+              className="text-4xl font-bold leading-[1.05] tracking-tighter md:text-5xl"
+            >
               {lead}
-            </h2>
+            </motion.h2>
           </div>
-          <p className="max-w-2xl text-base font-light leading-relaxed text-muted-foreground md:text-lg lg:justify-self-end">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-md text-sm font-light leading-relaxed text-white/40 md:text-base"
+          >
             {note}
-          </p>
+          </motion.p>
         </div>
 
-        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {publicacoesDocumentadas.map((item) => (
-            <li key={item.id}>
-              <PublicacaoCard item={item} />
-            </li>
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {publicacoesDocumentadas.map((item, index) => (
+            <PublicacaoCard key={item.id} item={item} index={index} />
           ))}
         </ul>
       </div>

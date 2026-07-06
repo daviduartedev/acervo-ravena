@@ -11,7 +11,7 @@ export const siteCopy = {
     title: "Sobre o projeto",
     lead: "Um acervo documental dedicado à memória do Ravena Cassino Hotel.",
     paragraphs: [
-      "Este site reúne fotografias, relatos e referências históricas sobre o emblemático hotel de Laguna, Santa Catarina. O objetivo é preservar o legado arquitetônico, cultural e social de um lugar que marcou gerações no sul do Brasil.",
+      "Este site reúne fotografias, relatos e referências históricas sobre o emblemático hotel de Laguna - Santa Catarina. O objetivo é preservar o legado arquitetônico, cultural e social de um lugar que marcou gerações no sul do Brasil.",
       "O acervo está em constante expansão. Se você possui materiais, histórias ou documentos relacionados ao Ravena, sua contribuição será fundamental para enriquecer esta memória coletiva.",
     ],
   },
@@ -43,7 +43,7 @@ export const siteCopy = {
     title: "Arquitetura",
     lead: "6.300 m² erguidos sobre a orla de Mar Grosso para redefinir a escala do litoral.",
     ficha: [
-      { label: "Localização", value: "Bairro Mar Grosso, Laguna/SC" },
+      { label: "Localização", value: "Bairro Mar Grosso, Laguna - Santa Catarina" },
       { label: "Área construída", value: "aprox. 6.300 m²" },
       { label: "Inauguração", value: "1962, 39 apartamentos" },
       { label: "Ampliação", value: "1969, mais de 100 apartamentos" },

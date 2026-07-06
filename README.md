@@ -1,6 +1,6 @@
 # acervo-ravena
 
-Site institucional e acervo documental do **Ravena Cassino Hotel** (Laguna, SC).
+Site institucional e acervo documental do **Ravena Cassino Hotel** (Laguna - Santa Catarina).
 
 ## Stack
 

@@ -1,95 +1,95 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Clock3, FileArchive, MapPinned } from "lucide-react";
+import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 
-const heroStats = [
-  { value: "1950", label: "início da sociedade fundadora" },
-  { value: "1962", label: "inauguração em Mar Grosso" },
-  { value: "100+", label: "apartamentos após a expansão" },
-] as const;
+const WA = "https://wa.me/5548984660149";
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 32 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.7, ease: "easeOut" as const, delay },
+});
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-32 md:px-10 md:pb-24 md:pt-40 lg:px-16">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.75fr] lg:items-end">
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-[6px] border border-foreground/10 bg-background/70 px-3 py-2 text-sm font-medium text-foreground/70">
-            <FileArchive size={16} strokeWidth={1.6} aria-hidden />
-            Acervo documental em Laguna, SC
-          </div>
+    <section className="relative min-h-screen overflow-hidden bg-black">
+      <div className="absolute inset-0">
+        <Image
+          src="/acervo/acervo-01.jpeg"
+          alt="Ravena Cassino Hotel"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
+      </div>
 
-          <h1 className="max-w-5xl text-5xl font-semibold leading-[0.96] text-foreground md:text-7xl lg:text-8xl">
-            Acervo Ravena Cassino Hotel
-          </h1>
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-end px-6 pb-20 pt-32 md:px-10 md:pb-28 lg:px-16">
+        <motion.p
+          {...fadeUp(0.1)}
+          className="mb-6 text-xs font-semibold uppercase tracking-[0.25em] text-white/50"
+        >
+          Laguna - Santa Catarina · Desde 1962
+        </motion.p>
 
-          <p className="mt-7 max-w-2xl text-lg font-light leading-relaxed text-muted-foreground md:text-xl">
-            Um site institucional para preservar a memória do hotel que ajudou a
-            redesenhar a orla de Mar Grosso, reunindo fotografias, documentos,
-            relatos e contexto urbano em uma experiência navegável.
-          </p>
+        <motion.h1
+          {...fadeUp(0.2)}
+          className="max-w-4xl text-[clamp(3rem,8vw,7rem)] font-bold leading-[0.92] tracking-tighter text-white"
+        >
+          Acervo<br />Ravena
+        </motion.h1>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href="/acervo"
-              className="inline-flex items-center justify-center gap-2 rounded-[6px] bg-foreground px-5 py-3 text-sm font-semibold text-background transition-colors hover:bg-foreground/90"
-            >
-              Ver acervo
-              <ArrowRight size={16} strokeWidth={1.7} aria-hidden />
-            </Link>
-            <Link
-              href="/historia"
-              className="inline-flex items-center justify-center gap-2 rounded-[6px] border border-foreground/10 px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-foreground hover:text-background"
-            >
-              Conhecer a história
-            </Link>
-          </div>
+        <motion.p
+          {...fadeUp(0.35)}
+          className="mt-8 max-w-xl text-lg font-light leading-relaxed text-white/60 md:text-xl"
+        >
+          A memória do hotel que redesenhou a orla de Mar Grosso. Fotografias,
+          documentos e relatos de quase um século de história preservados em
+          acervo aberto.
+        </motion.p>
 
-          <dl className="mt-12 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
-            {heroStats.map((stat) => (
-              <div
-                key={stat.value}
-                className="rounded-[6px] border border-foreground/10 bg-background/60 p-4"
-              >
-                <dt className="text-3xl font-semibold leading-none">{stat.value}</dt>
-                <dd className="mt-2 text-sm font-light leading-snug text-muted-foreground">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <motion.div
+          {...fadeUp(0.48)}
+          className="mt-10 flex flex-col gap-3 sm:flex-row"
+        >
+          <Link
+            href="/acervo"
+            className="inline-flex items-center justify-center gap-2 bg-white px-6 py-3.5 text-sm font-semibold text-black transition-opacity hover:opacity-85"
+          >
+            Ver acervo
+            <ArrowRight size={15} strokeWidth={2} aria-hidden />
+          </Link>
+          <a
+            href={WA}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 border border-white/25 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white/60"
+          >
+            Contribuir com material
+          </a>
+        </motion.div>
 
-        <div className="grid gap-4">
-          <figure className="relative aspect-[4/5] overflow-hidden rounded-[6px] border border-foreground/10 bg-muted shadow-[0_26px_90px_rgba(42,31,18,0.18)]">
-            <Image
-              src="/acervo/acervo-01.jpeg"
-              alt="Registro histórico do Ravena Cassino Hotel"
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 42vw"
-              className="object-cover"
-            />
-            <figcaption className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-5 pb-5 pt-20 text-sm font-light text-white/90">
-              Registro fotográfico do hotel em seu contexto urbano original.
-            </figcaption>
-          </figure>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-[6px] border border-foreground/10 bg-[#29332b] p-5 text-[#f7f1e6]">
-              <MapPinned size={22} strokeWidth={1.6} aria-hidden />
-              <p className="mt-5 text-sm font-light leading-relaxed text-[#f7f1e6]/70">
-                Mar Grosso aparece aqui como território, memória e transformação
-                urbana.
+        <motion.div
+          {...fadeUp(0.6)}
+          className="mt-16 grid grid-cols-3 gap-px border-t border-white/10 pt-8 sm:max-w-xl"
+        >
+          {[
+            { value: "1950", label: "Sociedade fundadora" },
+            { value: "1962", label: "Inauguração" },
+            { value: "100+", label: "Apartamentos" },
+          ].map((stat) => (
+            <div key={stat.value} className="pr-6">
+              <p className="text-3xl font-bold leading-none text-white md:text-4xl">
+                {stat.value}
               </p>
+              <p className="mt-2 text-xs font-light text-white/50">{stat.label}</p>
             </div>
-            <div className="rounded-[6px] border border-foreground/10 bg-[#5b2333] p-5 text-[#f7f1e6]">
-              <Clock3 size={22} strokeWidth={1.6} aria-hidden />
-              <p className="mt-5 text-sm font-light leading-relaxed text-[#f7f1e6]/70">
-                A cronologia organiza os marcos do Ravena em uma narrativa visual.
-              </p>
-            </div>
-          </div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

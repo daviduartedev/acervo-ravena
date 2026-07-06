@@ -1,55 +1,56 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
+import { motion, useInView } from "motion/react";
 import { relatoCards } from "@/content/depoimentos";
 
 export function Relatos() {
-  return (
-    <section className="px-6 py-20 md:px-10 md:py-24 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 grid gap-6 lg:grid-cols-[0.72fr_1fr] lg:items-end">
-          <div>
-            <p className="mb-4 text-sm font-semibold uppercase text-foreground/60">
-              Relatos e entrevistas
-            </p>
-            <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
-              Vozes que dão escala humana ao arquivo.
-            </h2>
-          </div>
-          <p className="max-w-2xl text-lg font-light leading-relaxed text-muted-foreground lg:justify-self-end">
-            Os relatos aproximam o acervo da vida cotidiana: trabalho, hospedagem,
-            festas, turismo, praia e transformações percebidas por quem viveu o
-            Ravena de perto.
-          </p>
-        </div>
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {relatoCards.map((card) => (
-            <article
+  return (
+    <section ref={ref} id="relatos" className="bg-[#0d0d0b] px-6 py-24 text-white md:px-10 md:py-32 lg:px-16">
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5 }}
+          className="mb-16 flex items-end justify-between border-b border-white/10 pb-4"
+        >
+          <h2 className="text-xs font-semibold uppercase tracking-[0.25em] text-white/40">
+            Relatos e Entrevistas
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+          {relatoCards.map((card, index) => (
+            <motion.article
               key={card.id}
-              className="overflow-hidden rounded-[6px] border border-foreground/10 bg-background/70 shadow-[0_18px_60px_rgba(42,31,18,0.06)]"
+              initial={{ opacity: 0, y: 32 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.65, ease: "easeOut", delay: index * 0.12 }}
+              className={index === 1 ? "md:mt-24" : undefined}
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+              <div className="relative mb-6 aspect-[4/3] overflow-hidden bg-white/5">
                 <Image
                   src={card.imageSrc}
                   alt={card.imageAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
+                  className="object-cover grayscale transition-transform duration-700 hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 hover:bg-black/0" />
               </div>
-              <div className="p-6 md:p-7">
-                <h3 className="mb-3 text-2xl font-semibold leading-tight">
-                  {card.title}
-                </h3>
-                <p className="font-light leading-relaxed text-muted-foreground">
-                  {card.excerpt}
-                </p>
-                {card.author && (
-                  <p className="mt-5 text-sm font-semibold text-foreground/60">
-                    {card.author}
-                  </p>
+              <h3 className="mb-3 text-2xl font-bold tracking-tight text-white">
+                {card.id === "juliano" ? (
+                  card.title
+                ) : (
+                  <>&ldquo;{card.title}&rdquo;</>
                 )}
-              </div>
-            </article>
+              </h3>
+              <p className="font-light text-white/50">{card.excerpt}</p>
+            </motion.article>
           ))}
         </div>
       </div>

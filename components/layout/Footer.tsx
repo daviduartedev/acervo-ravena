@@ -17,7 +17,7 @@ export function Footer() {
             </Link>
             <p className="mt-6 max-w-md font-light leading-relaxed text-[#f7f1e6]/70">
               Um projeto dedicado à preservação histórica, arquitetônica e cultural
-              do ícone de Laguna, Santa Catarina.
+              do ícone de Laguna - Santa Catarina.
             </p>
           </div>
 
@@ -42,7 +42,7 @@ export function Footer() {
             </span>
             <span className="inline-flex items-center gap-2 font-light text-[#f7f1e6]/70">
               <MapPin size={16} strokeWidth={1.6} aria-hidden />
-              Laguna, Santa Catarina
+              Laguna - Santa Catarina
             </span>
             <a
               href="mailto:contato@acervoravena.com.br"
