@@ -192,15 +192,16 @@ importers:
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.17)
-      lightningcss-win32-x64-msvc:
-        specifier: ^1.32.0
-        version: 1.32.0
       tailwindcss:
         specifier: 4.3.1
         version: 4.3.1
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
+    optionalDependencies:
+      lightningcss-win32-x64-msvc:
+        specifier: ^1.32.0
+        version: 1.32.0
 
 packages:
 
@@ -3531,7 +3532,8 @@ snapshots:
   lightningcss-win32-arm64-msvc@1.32.0:
     optional: true
 
-  lightningcss-win32-x64-msvc@1.32.0: {}
+  lightningcss-win32-x64-msvc@1.32.0:
+    optional: true
 
   lightningcss@1.32.0:
     dependencies:
