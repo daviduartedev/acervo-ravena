@@ -55,9 +55,6 @@ export function SobreProjeto() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
           className="border-t border-white/10 pt-12"
         >
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-white/30">
-            Origem do projeto
-          </p>
           <p className="max-w-3xl text-base font-light leading-relaxed text-white/50 md:text-lg">
             {origem}
           </p>

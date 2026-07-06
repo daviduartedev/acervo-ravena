@@ -40,7 +40,7 @@ export function Hero() {
           {...fadeUp(0.2)}
           className="max-w-4xl text-[clamp(3rem,8vw,7rem)] font-bold leading-[0.92] tracking-tighter text-white"
         >
-          Acervo<br />Ravena
+          Acervo Ravena<br />Cassino Hotel
         </motion.h1>
 
         <motion.p
