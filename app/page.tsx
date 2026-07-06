@@ -207,7 +207,7 @@ export default function HomePage() {
 
       <section ref={pathRef} className="bg-[#f8f7f4] px-6 py-20 md:px-10 md:py-24 lg:px-16">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 grid gap-6 lg:grid-cols-[0.8fr_1fr] lg:items-end">
+          <div className="mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={pathInView ? { opacity: 1, y: 0 } : {}}
@@ -216,19 +216,10 @@ export default function HomePage() {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-foreground/50">
                 Navegue pelo acervo
               </p>
-              <h2 className="text-4xl font-black leading-[0.95] tracking-tighter md:text-5xl">
-                Cada tema, uma página.
+              <h2 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-tighter md:text-5xl">
+                Adentre a história do Ravena
               </h2>
             </motion.div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={pathInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-lg font-light leading-relaxed text-muted-foreground"
-            >
-              A experiência foi organizada para consulta: cada seção tem seu
-              próprio ritmo de leitura e entrada direta pelo menu.
-            </motion.p>
           </div>
           <PathwayGrid />
         </div>
